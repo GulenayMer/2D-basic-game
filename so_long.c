@@ -1,54 +1,70 @@
-#include <mlx.h>
-#include <stdio.h>
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
+/* The MAP  
+	-- 's extension must be .BER
+	-- must contain at least 1 exit, 1 collectible, 1 starting postion
+	-- must be rectangular
+	-- must be surrounded by walls
+	0 -- empty space
+	1 -- wall
+	C -- collectible
+	E -- exit
+	P -- players starting position
+*/
 
-typedef struct	s_vars {
-	void	*mlx;
-	void	*win;
-}				t_vars;
+/* GRAPHIC MANAGEMENT
+	-- the program must display the img in a window
+	-- the window management should be reponsive?
+	-- ESC must close the window & quit the program
+	-- use of images of MLX
+ */
 
-int	key_hook(int keycode, t_vars *vars)
+ /* GAME
+	-- collect & escape by chosing the shortest poss. route
+	-- KEYS: W, A, S, D to move the main character
+	-- The player should be move to up, down, left and right.
+	-- The player should not be able to move into walls.
+	-- At every move, the current num. of movements must be displayed in 
+	the shell
+	-- 2D view-- top dow or profile 
+ */
+
+/* Extrn funct: open, close, read, write, malloc, free, perror, strerror, exit */
+
+
+
+#include "so_long.h"
+
+#include <stdlib.h>
+
+int	main()
 {
-	printf("Hello from key_hook!\n");
-	return (0);
-}
+	t_program program;
+	t_window  window;
+	window.x_width = 800;
+	window.y_height = 600;
 
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
+	int *texture_h = malloc(sizeof(int));
+	int *texture_w = malloc(sizeof(int));
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
+	/*  return error :
+		1) extension !(ber), 
+		2) !(pce10)	
+		3) !(surrounded by walls)
 
+		("Error\n")
+	*/
 
-int	main(void)
-{
-	void	*mlx;
-	void	*mlx_win;
-	char	*relative_path = "./download.xpm";
-	int	height;
-	int width;
-	t_data	img;
-	t_vars	vars;
+	/* if not error: */
+	program.mlx = mlx_init();
+	program.mlx_window = mlx_new_window(program.mlx, window.x_width, window.y_height, "so_long");
 
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, 640, 480, "Hello world!");
-	mlx_key_hook(vars.win, key_hook, &vars);
+	for (int i = 0; i < window.x_width; i++) 
+	{
+		mlx_pixel_put(program.mlx, program.mlx_window, i, window.y_height / 5, 0xFF5733);
+	}
 
-	//mlx = mlx_init();
-	//mlx_win = mlx_new_window(mlx, 400, 400, "so_long");
-	//img.img = mlx_new_image(mlx, 400, 400);
-	//img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length,&img.endian);
+	program.img = mlx_xpm_file_to_image(program.mlx, "./download.xpm", texture_w, texture_h);
+	mlx_put_image_to_window(program.mlx, program.mlx_window, program.img, *texture_w, *texture_w);
 
-	img.img = mlx_xpm_file_to_image(mlx, relative_path, &width, &height);
-	mlx_put_image_to_window(mlx, mlx_win, img.img, 0, 0);
-	mlx_loop(mlx);
+	mlx_loop(program.mlx);
 }
