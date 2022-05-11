@@ -32,39 +32,76 @@
 
 
 
-#include "so_long.h"
-
-#include <stdlib.h>
-
-int	main()
-{
-	t_program program;
-	t_window  window;
-	window.x_width = 800;
-	window.y_height = 600;
-
-	int *texture_h = malloc(sizeof(int));
-	int *texture_w = malloc(sizeof(int));
 
 	/*  return error :
 		1) extension !(ber), 
 		2) !(pce10)	
 		3) !(surrounded by walls)
-
 		("Error\n")
 	*/
+// #include "so_long.h"
+#include <stdio.h>
+#include "libft/libft.h"
+#include <fcntl.h>
 
-	/* if not error: */
-	program.mlx = mlx_init();
-	program.mlx_window = mlx_new_window(program.mlx, window.x_width, window.y_height, "so_long");
+typedef struct s_data
+{
+	t_data *map_lines;
 
-	for (int i = 0; i < window.x_width; i++) 
+} t_data;
+
+/* check if the map has ber extension */
+int	check_ber(char *argv)
+{
+	int	argv_first_length;
+	int	index;
+
+	argv_first_length = ft_strlen(argv);
+	index = argv_first_length - 1;
+	if (argv[index] == 'r' && argv[index - 1] == 'e' && argv[index - 2] == 'b' && argv[index - 3] == '.')
+		{
+			//printf("has .ber\n");
+			return (0);
+		}
+	else
 	{
-		mlx_pixel_put(program.mlx, program.mlx_window, i, window.y_height / 5, 0xFF5733);
+		//printf("no .ber\n");
+		return (1);
 	}
+}
 
-	program.img = mlx_xpm_file_to_image(program.mlx, "./download.xpm", texture_w, texture_h);
-	mlx_put_image_to_window(program.mlx, program.mlx_window, program.img, *texture_w, *texture_w);
+/*    check map errors */
 
-	mlx_loop(program.mlx);
+
+
+
+
+int	main(int argc, char **argv)
+{
+	int		mapfd;
+	char	*line;
+	t_data	*map_lines;
+	int		count;
+
+	if (argc < 2)
+		return (1);
+	mapfd = open(argv[1], O_RDONLY);
+	if (!mapfd)
+	{
+		perror("could not read the map");
+		exit (1);
+	}
+	check_ber(argv[1]);
+	
+	count = 0;
+	line = get_next_line(mapfd);
+	//printf("%s\n", line);
+	while (line)
+	{
+		map_lines = ft_str_join(map_lines, line);
+		line = get_next_line(mapfd);
+		count++;
+	}
+	printf("%s\n", map_lines);
+	return (0);
 }

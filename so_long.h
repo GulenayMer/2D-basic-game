@@ -1,9 +1,9 @@
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
-#include "mlx/mlx.h"
-
-#include <fcntl.h>
+# include "mlx/mlx.h"
+# include "libft/libft.h"
+# include <fcntl.h>
 
 typedef struct s_vars
 {
@@ -13,14 +13,12 @@ typedef struct s_vars
 
 }			t_vars;
 
-
 /* vector variables for the window & image */
 typedef struct s_window
 {
-	int		x_width; 
+	int		x_width;
 	int		y_height;
 }			t_window;
-
 
 /* image */
 typedef struct s_image
@@ -29,7 +27,6 @@ typedef struct s_image
 
 }			t_image;
 
-
 /*  mlx program */
 typedef struct s_program
 {
@@ -37,8 +34,6 @@ typedef struct s_program
 	t_image		*img;
 	t_window	*mlx_window;
 }			t_program;
-
-
 
 
 
