@@ -1,6 +1,6 @@
 
 /* The MAP  
-	-- 's extension must be .BER
+	-- 's extension must be .BER  -- CHECKED
 	-- must contain at least 1 exit, 1 collectible, 1 starting postion
 	-- must be rectangular
 	-- must be surrounded by walls
@@ -30,78 +30,86 @@
 
 /* Extrn funct: open, close, read, write, malloc, free, perror, strerror, exit */
 
-
-
-
 	/*  return error :
 		1) extension !(ber), 
 		2) !(pce10)	
 		3) !(surrounded by walls)
 		("Error\n")
 	*/
-// #include "so_long.h"
-#include <stdio.h>
-#include "libft/libft.h"
-#include <fcntl.h>
 
-typedef struct s_data
+#include "so_long.h"
+
+int	count_number_lines(char **argv)
 {
-	t_data *map_lines;
+	char	*line;
+	int		mapfd;
+	int		line_count;
 
-} t_data;
-
-/* check if the map has ber extension */
-int	check_ber(char *argv)
-{
-	int	argv_first_length;
-	int	index;
-
-	argv_first_length = ft_strlen(argv);
-	index = argv_first_length - 1;
-	if (argv[index] == 'r' && argv[index - 1] == 'e' && argv[index - 2] == 'b' && argv[index - 3] == '.')
-		{
-			//printf("has .ber\n");
-			return (0);
-		}
-	else
+	mapfd = open(argv[1], O_RDONLY);
+	line = get_next_line(mapfd);
+	line_count = 0;
+	while (line)
 	{
-		//printf("no .ber\n");
-		return (1);
+		line = get_next_line(mapfd);
+		line_count++;
 	}
+	close(mapfd);
+	return (line_count);
 }
 
-/*    check map errors */
+int count_line_length(char **argv)
+{
+	char	*line;
+	int		mapfd;
+	int		line_length;
 
+	mapfd = open(argv[1], O_RDONLY);
+	line = get_next_line(mapfd);
+	line_length = ft_strlen(line);
+	close(mapfd);
+	return (line_length);
+}
 
+void	ft_read_map(char **argv, t_solong *game)
+{
+	char	*line;
+	int		mapfd;
+	int		line_count;
 
-
+	mapfd = open(argv[1], O_RDONLY);
+	line_count = count_number_lines(argv);
+	game->map = (char **)malloc(sizeof(t_solong *) * line_count);
+	line_count = 0;
+	while (line) 
+	{
+		line = get_next_line(mapfd);
+		game->map[line_count] = line;
+		line_count++;
+	}
+	//check_walls(map[line_count]);
+	/* int i = 0;
+	while (i < line_count && game->map[i])
+	{
+		printf("%s", game->map[i]);
+		i++;
+	} */
+	game->img_width = count_line_length(argv) - 1;
+	game->img_height = line_count - 1;
+	//close(mapfd);
+}
 
 int	main(int argc, char **argv)
 {
-	int		mapfd;
-	char	*line;
-	t_data	*map_lines;
-	int		count;
+	t_solong game;
 
 	if (argc < 2)
 		return (1);
-	mapfd = open(argv[1], O_RDONLY);
-	if (!mapfd)
-	{
-		perror("could not read the map");
-		exit (1);
-	}
-	check_ber(argv[1]);
-	
-	count = 0;
-	line = get_next_line(mapfd);
-	//printf("%s\n", line);
-	while (line)
-	{
-		map_lines = ft_str_join(map_lines, line);
-		line = get_next_line(mapfd);
-		count++;
-	}
-	printf("%s\n", map_lines);
+	/*int line_count;
+	line_count = count_lines(argv);
+	printf("%d\n", line_count); */
+	ft_read_map(argv, &game);
+	check_first_last_line(&game);
+	//printf("%d\n", game.img_width);
+	//printf("%d\n", game.img_height);
 	return (0);
 }

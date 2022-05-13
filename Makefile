@@ -6,6 +6,7 @@ CC 		= 	gcc
 CFLAGS 	= 	-Wall -Wextra -Werror -g
 
 SRCS 	=	so_long.c \
+			utils.c \
 
 LIBFT		= libft/libft.a
 

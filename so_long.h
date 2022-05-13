@@ -4,37 +4,34 @@
 # include "mlx/mlx.h"
 # include "libft/libft.h"
 # include <fcntl.h>
+# include <stdlib.h>
 
-typedef struct s_vars
+#include <stdio.h>
+
+typedef struct s_solong
 {
-	int		collectible;
-	int		player;
-	int		exit;
+	char	**map;
 
-}			t_vars;
+	int player;
+	int collectible;
+	int exit;
 
-/* vector variables for the window & image */
-typedef struct s_window
-{
-	int		x_width;
-	int		y_height;
-}			t_window;
 
-/* image */
-typedef struct s_image
-{
-	t_window	size;
+	int img_width;
+	int img_height;
 
-}			t_image;
+} 		t_solong;
 
-/*  mlx program */
-typedef struct s_program
-{
-	void		*mlx;
-	t_image		*img;
-	t_window	*mlx_window;
-}			t_program;
 
+/*  Error Checks */
+int		check_ber(char *argv);
+int		check_first_last_line(t_solong *game);
+int		ft_str_chr(char *s, char c);
+
+/* map */
+void	ft_read_map(char **argv, t_solong *game);
+int		count_number_lines(char **argv);
+int		count_line_length(char **argv);
 
 
 #endif
