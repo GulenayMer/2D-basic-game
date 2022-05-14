@@ -31,7 +31,7 @@
 /* Extrn funct: open, close, read, write, malloc, free, perror, strerror, exit */
 
 	/*  return error :
-		1) extension !(ber), 
+		1) extension !(ber)
 		2) !(pce10)	
 		3) !(surrounded by walls)
 		("Error\n")
@@ -78,7 +78,7 @@ void	ft_read_map(char **argv, t_solong *game)
 
 	mapfd = open(argv[1], O_RDONLY);
 	line_count = count_number_lines(argv);
-	game->map = (char **)malloc(sizeof(t_solong *) * line_count);
+	game->map = (char **)malloc(sizeof(t_solong *) * line_count - 1);
 	line_count = 0;
 	while (line) 
 	{
@@ -108,7 +108,12 @@ int	main(int argc, char **argv)
 	line_count = count_lines(argv);
 	printf("%d\n", line_count); */
 	ft_read_map(argv, &game);
-	check_first_last_line(&game);
+	//check_first_line(&game);
+	//check_last_line(&game);
+	//check_first_index(&game);
+	//check_last_index(&game);
+	//check_p_c_e(&game);
+	//check_p_c_e_1_0(&game);
 	//printf("%d\n", game.img_width);
 	//printf("%d\n", game.img_height);
 	return (0);

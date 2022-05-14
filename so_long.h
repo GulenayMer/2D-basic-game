@@ -12,21 +12,25 @@ typedef struct s_solong
 {
 	char	**map;
 
+	int img_width;
+	int img_height;
+
 	int player;
 	int collectible;
 	int exit;
-
-
-	int img_width;
-	int img_height;
 
 } 		t_solong;
 
 
 /*  Error Checks */
 int		check_ber(char *argv);
-int		check_first_last_line(t_solong *game);
-int		ft_str_chr(char *s, char c);
+int		check_first_line(t_solong *game);
+int		check_last_line(t_solong *game);
+int		check_first_index(t_solong *game);
+int		check_last_index(t_solong *game);
+int		check_p_c_e(t_solong *game);
+int		check_p_c_e_1_0(t_solong *game);
+
 
 /* map */
 void	ft_read_map(char **argv, t_solong *game);
