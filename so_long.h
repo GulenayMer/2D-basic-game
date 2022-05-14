@@ -30,7 +30,7 @@ int		check_first_index(t_solong *game);
 int		check_last_index(t_solong *game);
 int		check_p_c_e(t_solong *game);
 int		check_p_c_e_1_0(t_solong *game);
-
+int		error_check(t_solong *game);
 
 /* map */
 void	ft_read_map(char **argv, t_solong *game);

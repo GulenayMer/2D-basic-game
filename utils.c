@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/12 22:31:45 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/14 21:24:09 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/14 21:53:26 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ int	check_first_line(t_solong *game)
 	{
 		if (game->map[j][i] != '1')
 		{
-			printf("firs row has no walls\n");
+			//printf("firs row has no walls\n");
 			return (1);
 		}
 		i++;
 	}
-	printf("walls\n");
+	//printf("walls\n");
 	return (0);	
 }
 
@@ -67,12 +67,12 @@ int	check_last_line(t_solong *game)
 	{
 		if (game->map[j][i] != '1')
 		{
-			printf("last row has no walls\n");
+			//printf("last row has no walls\n");
 			return (1);
 		}
 		i++;
 	}
-	printf("walls\n");
+	//printf("walls\n");
 	return (0);
 }
 
@@ -88,12 +88,12 @@ int	check_first_index(t_solong *game)
 	{
 		if (game->map[j][i] != '1')
 		{
-			printf("first indexes have no walls\n");
+			//printf("first indexes have no walls\n");
 			return (1);
 		}
 		j++;
 	}
-	printf("walls\n");
+	//printf("walls\n");
 	return (0);
 }
 
@@ -109,12 +109,12 @@ int	check_last_index(t_solong *game)
 	{
 		if (game->map[j][i] != '1')
 		{
-			printf("last indexes have no walls\n");
+			//printf("last indexes have no walls\n");
 			return (1);
 		}
 		j++;
 	}
-	printf("walls\n");
+	//printf("walls\n");
 	return (0);
 }
 
@@ -132,17 +132,17 @@ int	check_p_c_e(t_solong *game)
 		{
 			if (game->map[j][i] == 'P')
 			{
-				printf("at least 1 P\n");
+				//printf("at least 1 P\n");
 				game->player++;
 			}
 			if (game->map[j][i] == 'C')
 			{
-				printf("at least 1 C\n");
+				//printf("at least 1 C\n");
 				game->collectible++;
 			}
 			if (game->map[j][i] == 'E')
 			{
-				printf("at least 1 E\n");
+				//printf("at least 1 E\n");
 				game->exit++;
 			}
 			i++;
@@ -151,10 +151,10 @@ int	check_p_c_e(t_solong *game)
 	}
 	if (game->player == 0 || game->collectible == 0 || game->exit == 0)
 	{
-		printf("no p, e, or c\n");
-		return (0);
+		//printf("no p, e, or c\n");
+		return (1);
 	}
-	return (1);
+	return (0);
 }
 
 /* check if only p, c, e, 1 and 0 exist */
@@ -172,15 +172,15 @@ int	check_p_c_e_1_0(t_solong *game)
 			if (game->map[j][i] != 'P' && game->map[j][i] != 'E' && game->map[j][i] != 'C'
 				&& game->map[j][i] != '1' && game->map[j][i] != '0')
 			{
-				printf("other chars\n");
-				return (0);
+				//printf("other chars\n");
+				return (1);
 			}
 			i++;
 		}
 		j++;
 	}
-	printf("only P, E, C, 1 & 0\n");
-	return (1);
+	//printf("only P, E, C, 1 & 0\n");
+	return (0);
 }
 
 /* check if the map is rectangular */

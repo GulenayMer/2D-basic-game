@@ -98,6 +98,18 @@ void	ft_read_map(char **argv, t_solong *game)
 	//close(mapfd);
 }
 
+int error_check(t_solong *game)
+{
+	if (check_first_line(game) || check_last_line(game) || check_first_index(game)
+		|| check_last_index(game) || check_p_c_e(game) || check_p_c_e_1_0(game))
+	{
+		write(1, "Error with the map\n", 20);
+		return (1);
+	}
+	write(1, "no error with the map\n", 23);
+	return (0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_solong game;
@@ -108,12 +120,7 @@ int	main(int argc, char **argv)
 	line_count = count_lines(argv);
 	printf("%d\n", line_count); */
 	ft_read_map(argv, &game);
-	//check_first_line(&game);
-	//check_last_line(&game);
-	//check_first_index(&game);
-	//check_last_index(&game);
-	//check_p_c_e(&game);
-	//check_p_c_e_1_0(&game);
+	error_check(&game);
 	//printf("%d\n", game.img_width);
 	//printf("%d\n", game.img_height);
 	return (0);
