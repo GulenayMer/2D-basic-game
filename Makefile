@@ -7,6 +7,10 @@ CFLAGS 	= 	-Wall -Wextra -Werror -g
 
 SRCS 	=	so_long.c \
 			utils.c \
+			readmap.c \
+			map_img.c \
+			errorcheck.c \
+			errorcheck2.c \
 
 LIBFT		= libft/libft.a
 
@@ -16,7 +20,7 @@ RM          =	rm -f
 
 $(NAME): $(SRC_OBJS)
 	make -C libft/
-	$(CC) $(CFLAGS) -o $(NAME) $(SRC_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) mlx/libmlx.a -framework OpenGL -framework AppKit -o $(NAME) $(SRC_OBJS) $(LIBFT)
 
 all : $(NAME)
 

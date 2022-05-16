@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/16 18:08:56 by mgulenay          #+#    #+#             */
+/*   Updated: 2022/05/16 20:20:29 by mgulenay         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 /* The MAP  
 	-- 's extension must be .BER  -- CHECKED
@@ -39,69 +50,11 @@
 
 #include "so_long.h"
 
-int	count_number_lines(char **argv)
+int	error_check(t_solong *game)
 {
-	char	*line;
-	int		mapfd;
-	int		line_count;
-
-	mapfd = open(argv[1], O_RDONLY);
-	line = get_next_line(mapfd);
-	line_count = 0;
-	while (line)
-	{
-		line = get_next_line(mapfd);
-		line_count++;
-	}
-	close(mapfd);
-	return (line_count);
-}
-
-int count_line_length(char **argv)
-{
-	char	*line;
-	int		mapfd;
-	int		line_length;
-
-	mapfd = open(argv[1], O_RDONLY);
-	line = get_next_line(mapfd);
-	line_length = ft_strlen(line);
-	close(mapfd);
-	return (line_length);
-}
-
-void	ft_read_map(char **argv, t_solong *game)
-{
-	char	*line;
-	int		mapfd;
-	int		line_count;
-
-	mapfd = open(argv[1], O_RDONLY);
-	line_count = count_number_lines(argv);
-	game->map = (char **)malloc(sizeof(t_solong *) * line_count - 1);
-	line_count = 0;
-	while (line) 
-	{
-		line = get_next_line(mapfd);
-		game->map[line_count] = line;
-		line_count++;
-	}
-	//check_walls(map[line_count]);
-	/* int i = 0;
-	while (i < line_count && game->map[i])
-	{
-		printf("%s", game->map[i]);
-		i++;
-	} */
-	game->img_width = count_line_length(argv) - 1;
-	game->img_height = line_count - 1;
-	//close(mapfd);
-}
-
-int error_check(t_solong *game)
-{
-	if (check_first_line(game) || check_last_line(game) || check_first_index(game)
-		|| check_last_index(game) || check_p_c_e(game) || check_p_c_e_1_0(game))
+	if (check_first_line(game) || check_last_line(game) \
+	|| check_first_index(game) || check_last_index(game) \
+	|| check_p_c_e(game) || check_p_c_e_1_0(game))
 	{
 		write(1, "Error with the map\n", 20);
 		return (1);
@@ -112,16 +65,25 @@ int error_check(t_solong *game)
 
 int	main(int argc, char **argv)
 {
-	t_solong game;
-
+	t_solong	game;
+	char		c = 0;
+	
 	if (argc < 2)
 		return (1);
 	/*int line_count;
-	line_count = count_lines(argv);
-	printf("%d\n", line_count); */
+	line_count = count_number_lines(argv);
+	printf("%d\n", line_count);*/
 	ft_read_map(argv, &game);
-	error_check(&game);
+	//error_check(&game);
+
 	//printf("%d\n", game.img_width);
 	//printf("%d\n", game.img_height);
+
+	
+	game.mlx = mlx_init();
+	game.mlx_window = mlx_new_window(game.mlx, (game.img_width * 100), \
+										(game.img_height * 100), "so_long");
+	get_xpm_to_image(&game, c);
+	mlx_loop(game.mlx);
 	return (0);
 }
