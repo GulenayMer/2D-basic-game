@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:34:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/17 17:03:14 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/18 00:03:23 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ int	check_p_c_e(t_solong *game)
 			if (game->map[j][i] == 'P')
 				game->player++;
 			if (game->map[j][i] == 'C')
-				game->collectible++;
+				game->collect++;
 			if (game->map[j][i] == 'E')
 				game->exit++;
 			i++;
 		}
 		j++;
 	}
-	if (game->player == 0 || game->collectible == 0 || game->exit == 0)
+	if (game->player == 0 || game->collect == 0 || game->exit == 0)
 		return (1);
 	return (0);
 }
