@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:15:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/16 20:19:02 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/17 18:05:35 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_img
 	void	*img;
 	int		size_x;
 	int		size_y;
-	int		x;
-	int		y;
+	int		horizontal_point;
+	int		vertical_point;
 
 }		t_img;
 
@@ -35,17 +35,16 @@ typedef struct s_solong
 	char	**map;
 	int		img_width;
 	int		img_height;
-	int		player;
-	int		collectible;
-	int		exit;
-	int		wall;
-	int		empty;
+	void	*player;
+	void	*collectible;
+	void	*exit;
+	void	*wall;
+	void	*empty;
 	void	*mlx;
 	void	*mlx_window;
 	t_img	img;
 
 }			t_solong;
-
 
 /*  Error Checks */
 int		check_ber(char *argv);
@@ -65,9 +64,8 @@ int		count_number_lines(char **argv);
 int		count_line_length(char **argv);
 
 /* load images to window -- mlx */
-void	get_xpm_to_image(t_solong *game, char c);
-void	load_image_to_map(t_solong *game);
-void	load_image_to_map2(t_solong *game);
-
+void	get_image_to_map(t_solong *game, char c, int x, int y);
+void	load_image_to_map(t_solong *game, char c, int x, int y);
+void	create_map(t_solong *game);
 
 #endif

@@ -6,11 +6,11 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:34:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/16 18:36:53 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/17 17:03:14 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include "so_long.h"
 /* check if at least one p, c and e exist */
 int	check_p_c_e(t_solong *game)
 {
@@ -78,17 +78,20 @@ int	check_line_length(t_solong *game, char **argv)
 	int	length_next;
 	int	j;
 
-	length = count_line_length(argv) - 1;
-	printf("%d\n", length);
-	length_next = strlen_helper(*(game->map));
-	printf("%d\n", length);
-	i = 0;
+	length = ft_strlen(argv[0]);
+	//printf("%d\n", length);
+	//length_next = strlen_helper(*(game->map));
+	//printf("%d\n", length);
+	j = 1;
 	while (j < game->img_height)
-		j++;
-	if (length != length_next)
 	{
-		printf("lines are not equal\n");
-		return (1);
+		length_next = ft_strlen(argv[j]);
+		if (length != length_next)
+		{
+			printf("lines are not equal\n");
+			return (1);
+		}
+		j++;
 	}
 	return (0);
 }

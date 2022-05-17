@@ -62,4 +62,27 @@ typedef struct s_program
 */
 
 
-mlx/libmlx.a -framework OpenGL -framework AppKit 
+mlx/libmlx.a -framework OpenGL -framework AppKit
+
+
+
+
+typedef enum img_arg
+{
+	WALL,
+	COLLECT,
+	PLAYER,
+	EMPTY,
+	EXIT,
+	IMG_COUNT
+}	t_img;
+
+
+
+/*int line_count;
+	line_count = count_number_lines(argv);
+	printf("%d\n", line_count);*/
+	//printf("%d\n", game.img_width);
+	//printf("%d\n", game.img_height);
+	
+	/* mlx/libmlx.a  */

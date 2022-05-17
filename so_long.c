@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:08:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/16 20:20:29 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/17 17:46:03 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,6 @@
 	the shell
 	-- 2D view-- top dow or profile 
  */
-
-/* Extrn funct: open, close, read, write, malloc, free, perror, strerror, exit */
-
-	/*  return error :
-		1) extension !(ber)
-		2) !(pce10)	
-		3) !(surrounded by walls)
-		("Error\n")
-	*/
-
 #include "so_long.h"
 
 int	error_check(t_solong *game)
@@ -59,31 +49,21 @@ int	error_check(t_solong *game)
 		write(1, "Error with the map\n", 20);
 		return (1);
 	}
-	write(1, "no error with the map\n", 23);
 	return (0);
 }
 
 int	main(int argc, char **argv)
 {
 	t_solong	game;
-	char		c = 0;
-	
+
 	if (argc < 2)
 		return (1);
-	/*int line_count;
-	line_count = count_number_lines(argv);
-	printf("%d\n", line_count);*/
 	ft_read_map(argv, &game);
-	//error_check(&game);
-
-	//printf("%d\n", game.img_width);
-	//printf("%d\n", game.img_height);
-
-	
+	error_check(&game);
 	game.mlx = mlx_init();
 	game.mlx_window = mlx_new_window(game.mlx, (game.img_width * 100), \
 										(game.img_height * 100), "so_long");
-	get_xpm_to_image(&game, c);
+	create_map(&game);
 	mlx_loop(game.mlx);
 	return (0);
 }
