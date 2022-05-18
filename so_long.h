@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:15:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/17 23:58:45 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/18 18:53:27 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,17 @@
 # include <fcntl.h>
 # include <stdlib.h>
 
+# define BLOCK 64
 # define WALL "./data/wall.xpm"
 # define FLOOR "./data/grass.xpm"
 # define PLAYER "./data/farmer.xpm"
 # define COLLECT "./data/apple.xpm"
 # define EXIT "./data/exit.xpm"
+# define UP 13
+# define DOWN 0
+# define RIGHT 2
+# define LEFT 1
+# define ESC 53
 
 typedef struct s_img
 {
@@ -31,19 +37,19 @@ typedef struct s_img
 	int		size_y;
 	int		horizontal;
 	int		vertical;
+	void	*player;
+	void	*collect;
+	void	*exit;
+	void	*wall;
+	void	*floor;
 
 }		t_img;
 
 typedef struct s_solong
 {
 	char	**map;
-	int		img_width;
-	int		img_height;
-	void	*player;
-	void	*collect;
-	void	*exit;
-	void	*wall;
-	void	*floor;
+	int		map_width;
+	int		map_height;
 	void	*mlx;
 	void	*mlx_window;
 	t_img	img;
@@ -68,8 +74,12 @@ int		count_number_lines(char **argv);
 int		count_line_length(char **argv);
 
 /* load images to window -- mlx */
-void	get_image_to_map(t_solong *game, char c);
-void	load_image_to_map(t_solong *game, char c, int x, int y);
+void	get_xpm_to_image(t_solong *game);
+void	load_image_to_map(t_solong *game, int x, int y);
 void	create_map(t_solong *game);
+
+/* movements */
+int		get_moves(t_solong *game, int key);
+void	move_up(t_solong *game);
 
 #endif

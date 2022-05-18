@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:31:57 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/16 18:34:27 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:25:08 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	check_first_line(t_solong *game)
 
 	j = 0;
 	i = 0;
-	while (i < game->img_width)
+	while (i < game->map_width)
 	{
 		if (game->map[j][i] != '1')
 			return (1);
@@ -50,9 +50,9 @@ int	check_last_line(t_solong *game)
 	int	i;
 	int	j;
 
-	j = game->img_height - 1;
+	j = game->map_height - 1;
 	i = 0;
-	while (i < game->img_width)
+	while (i < game->map_width)
 	{
 		if (game->map[j][i] != '1')
 			return (1);
@@ -69,7 +69,7 @@ int	check_first_index(t_solong *game)
 
 	i = 0;
 	j = 0;
-	while (j < game->img_height)
+	while (j < game->map_height)
 	{
 		if (game->map[j][i] != '1')
 			return (1);
@@ -84,9 +84,9 @@ int	check_last_index(t_solong *game)
 	int	i;
 	int	j;
 
-	i = game->img_width - 1;
+	i = game->map_width - 1;
 	j = 0;
-	while (j < game->img_height)
+	while (j < game->map_height)
 	{
 		if (game->map[j][i] != '1')
 			return (1);

@@ -6,29 +6,13 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:08:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/17 17:46:03 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/18 18:55:45 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* The MAP  
-	-- 's extension must be .BER  -- CHECKED
-	-- must contain at least 1 exit, 1 collectible, 1 starting postion
-	-- must be rectangular
-	-- must be surrounded by walls
-	0 -- empty space
-	1 -- wall
-	C -- collectible
-	E -- exit
-	P -- players starting position
-*/
-
 /* GRAPHIC MANAGEMENT
-	-- the program must display the img in a window
-	-- the window management should be reponsive?
 	-- ESC must close the window & quit the program
-	-- use of images of MLX
  */
-
  /* GAME
 	-- collect & escape by chosing the shortest poss. route
 	-- KEYS: W, A, S, D to move the main character
@@ -36,7 +20,6 @@
 	-- The player should not be able to move into walls.
 	-- At every move, the current num. of movements must be displayed in 
 	the shell
-	-- 2D view-- top dow or profile 
  */
 #include "so_long.h"
 
@@ -61,8 +44,9 @@ int	main(int argc, char **argv)
 	ft_read_map(argv, &game);
 	error_check(&game);
 	game.mlx = mlx_init();
-	game.mlx_window = mlx_new_window(game.mlx, (game.img_width * 100), \
-										(game.img_height * 100), "so_long");
+	game.mlx_window = mlx_new_window(game.mlx, (game.map_width * BLOCK), \
+										(game.map_height * BLOCK), "so_long");
+	get_image_to_map(&game);
 	create_map(&game);
 	mlx_loop(game.mlx);
 	return (0);

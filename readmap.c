@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:13:32 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/16 18:13:29 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:26:07 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	ft_read_map(char **argv, t_solong *game)
 		i++;
 	}
 	printf("\n");*/
-	game->img_width = count_line_length(argv) - 1;
-	game->img_height = line_count;
+	game->map_width = count_line_length(argv) - 1;
+	game->map_height = line_count;
 	//close(mapfd);
 }

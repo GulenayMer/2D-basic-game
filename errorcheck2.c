@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:34:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/18 00:03:23 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/18 15:27:07 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,22 @@ int	check_p_c_e(t_solong *game)
 	int	j;
 
 	j = 1;
-	while (j < game->img_height - 1)
+	while (j < game->map_height - 1)
 	{
 		i = 0;
-		while (i < game->img_width)
+		while (i < game->map_width)
 		{
 			if (game->map[j][i] == 'P')
-				game->player++;
+				game->img.player++;
 			if (game->map[j][i] == 'C')
-				game->collect++;
+				game->img.collect++;
 			if (game->map[j][i] == 'E')
-				game->exit++;
+				game->img.exit++;
 			i++;
 		}
 		j++;
 	}
-	if (game->player == 0 || game->collect == 0 || game->exit == 0)
+	if (game->img.player == 0 || game->img.collect == 0 || game->img.exit == 0)
 		return (1);
 	return (0);
 }
@@ -45,10 +45,10 @@ int	check_p_c_e_1_0(t_solong *game)
 	int	j;
 
 	j = 0;
-	while (j < game->img_height)
+	while (j < game->map_height)
 	{
 		i = 0;
-		while (i < game->img_width)
+		while (i < game->map_width)
 		{
 			if (game->map[j][i] != 'P' && game->map[j][i] != 'E' \
 			&& game->map[j][i] != 'C' && game->map[j][i] != '1' \
@@ -83,7 +83,7 @@ int	check_line_length(t_solong *game, char **argv)
 	//length_next = strlen_helper(*(game->map));
 	//printf("%d\n", length);
 	j = 1;
-	while (j < game->img_height)
+	while (j < game->map_height)
 	{
 		length_next = ft_strlen(argv[j]);
 		if (length != length_next)
@@ -103,10 +103,10 @@ int	check_rectangular(t_solong *game)
 	int	j;
 
 	j = 0;
-	while (j < game->img_height)
+	while (j < game->map_height)
 		j++;
 	i = 0;
-	while (i < game->img_width)
+	while (i < game->map_width)
 		i++;
 	j--;
 	i--;
