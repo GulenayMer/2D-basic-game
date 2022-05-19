@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:15:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/19 17:09:27 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/19 22:37:25 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 # define COLLECT "./data/apple.xpm"
 # define EXIT "./data/exit.xpm"
 # define UP 13
-# define DOWN 0
+# define DOWN 1
 # define RIGHT 2
-# define LEFT 1
+# define LEFT 0
 # define ESC 53
 
 typedef struct s_img
@@ -81,10 +81,10 @@ int		count_line_length(char **argv);
 /* load images to window -- mlx */
 void	get_xpm_to_image(t_solong *game);
 void	load_image_to_map(t_solong *game, int x, int y);
-void	create_map(t_solong *game);
+int	create_map(t_solong *game);
 
 /* movements */
-int		get_moves(t_solong *game, int key);
+int		get_moves(int key, t_solong *game);
 void	move_up_w(t_solong *game);
 void	move_right_d(t_solong *game);
 void	move_left_s(t_solong *game);
@@ -93,5 +93,6 @@ void	move_down_a(t_solong *game);
 /* */
 void	win_game(t_solong *game);
 int		count(t_solong *game);
+int		exit_game(t_solong *game);
 
 #endif

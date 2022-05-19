@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:45:31 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/19 17:05:15 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/19 21:11:56 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	move_up_w(t_solong *game)
 	{
 		game->map[j][i] = '0';
 		game->map[j - 1][i] = 'P';
-		j--;
+		game->y_pos--;
 		game->steps++;
 	}
 }
@@ -42,6 +42,7 @@ void	move_down_a(t_solong *game)
 
 	i = game->x_pos;
 	j = game->y_pos;
+	printf("Hello\n");
 	if (game->map[j + 1][i] != '1')
 	{
 		if (game->map[j + 1][i] == 'C')
@@ -53,7 +54,7 @@ void	move_down_a(t_solong *game)
 	{
 		game->map[j][i] = '0';
 		game->map[j + 1][i] = 'P';
-		j++;
+		game->y_pos++;
 		game->steps++;
 	}
 }
@@ -76,7 +77,7 @@ void	move_left_s(t_solong *game)
 	{
 		game->map[j][i] = '0';
 		game->map[j][i - 1] = 'P';
-		i--;
+		game->x_pos--;
 		game->steps++;
 	}
 }
@@ -99,13 +100,14 @@ void	move_right_d(t_solong *game)
 	{
 		game->map[j][i] = '0';
 		game->map[j][i + 1] = 'P';
-		i++;
+		game->x_pos++;
 		game->steps++;
 	}
 }
 
-int	get_moves(t_solong *game, int key)
+int	get_moves(int key, t_solong *game)
 {
+	printf("in get_moves\n");
 	if (key == DOWN)
 		move_down_a(game);
 	else if (key == UP)
@@ -114,7 +116,7 @@ int	get_moves(t_solong *game, int key)
 		move_right_d(game);
 	else if (key == LEFT)
 		move_left_s(game);
-	/*else if (key == ESC)
-		quit_game(game);*/
+	else if (key == ESC)
+		exit_game(game);
 	return (0);
 }

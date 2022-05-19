@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:17:41 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/19 14:56:55 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/19 23:11:06 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	load_image_to_map(t_solong *game, int i, int j)
 	else if (game->map[j][i] == 'C')
 		mlx_put_image_to_window(game->mlx, game->mlx_window, \
 				game->img.collect, x, y);
-	// else if (game->map[j][i] == 'E')
-	// 	mlx_put_image_to_window(game->mlx, game->mlx_window, \
-	// 			game->img.exit, x, y);
+	else if (game->map[j][i] == 'E')
+		mlx_put_image_to_window(game->mlx, game->mlx_window, \
+			game->img.exit, x, y);
 }
 
-void	create_map(t_solong *game)
+int	create_map(t_solong *game)
 {
 	int	i;
 	int	j;
@@ -68,4 +68,11 @@ void	create_map(t_solong *game)
 		}
 		j++;
 	}
+	return (0);
+}
+
+void	change_map(t_solong )
+{
+	int	i
+	if ()
 }
