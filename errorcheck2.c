@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:34:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/18 15:27:07 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/19 16:08:54 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,20 @@ int	check_p_c_e(t_solong *game)
 		while (i < game->map_width)
 		{
 			if (game->map[j][i] == 'P')
-				game->img.player++;
+			{
+					game->p++;
+					game->x_pos = i;
+					game->y_pos = j;
+			}
 			if (game->map[j][i] == 'C')
-				game->img.collect++;
+				game->c++;
 			if (game->map[j][i] == 'E')
-				game->img.exit++;
+				game->e++;
 			i++;
 		}
 		j++;
 	}
-	if (game->img.player == 0 || game->img.collect == 0 || game->img.exit == 0)
+	if (game->p == 0 || game->c == 0 || game->e == 0)
 		return (1);
 	return (0);
 }

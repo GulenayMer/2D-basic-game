@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:15:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/18 18:53:27 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/19 17:09:27 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ typedef struct s_img
 	void	*img;
 	int		size_x;
 	int		size_y;
-	int		horizontal;
-	int		vertical;
 	void	*player;
 	void	*collect;
 	void	*exit;
@@ -52,6 +50,13 @@ typedef struct s_solong
 	int		map_height;
 	void	*mlx;
 	void	*mlx_window;
+	int		steps;
+	int		score;
+	int		p;
+	int		e;
+	int		c;
+	int		x_pos;
+	int		y_pos;
 	t_img	img;
 
 }			t_solong;
@@ -80,6 +85,13 @@ void	create_map(t_solong *game);
 
 /* movements */
 int		get_moves(t_solong *game, int key);
-void	move_up(t_solong *game);
+void	move_up_w(t_solong *game);
+void	move_right_d(t_solong *game);
+void	move_left_s(t_solong *game);
+void	move_down_a(t_solong *game);
+
+/* */
+void	win_game(t_solong *game);
+int		count(t_solong *game);
 
 #endif

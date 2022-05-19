@@ -10,6 +10,7 @@ SRCS 	=	so_long.c \
 			map_img.c \
 			errorcheck.c \
 			errorcheck2.c \
+			moves.c \
 
 LIBFT		= libft/libft.a
 

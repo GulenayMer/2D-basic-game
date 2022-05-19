@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:17:41 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/18 17:31:28 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/19 14:56:55 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	get_xpm_to_image(t_solong *game)
 					&game->img.size_x, &game->img.size_y);
 	game->img.exit = mlx_xpm_file_to_image(game->mlx, EXIT, \
 						&game->img.size_x, &game->img.size_y);
-
 }
 
 /* images to the map */
