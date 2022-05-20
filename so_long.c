@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:08:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/20 12:23:11 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/20 12:48:24 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	error_check(t_solong *game)
 	return (0);
 }
 
-/*int	count(t_solong *game)
+int	count(t_solong *game)
 {
 	game->c = 0;
 	game->p = 0;
@@ -32,12 +32,12 @@ int	error_check(t_solong *game)
 	game->score = 0;
 	check_p_c_e(game);
 	return (0);
-}*/
+}
 
 void	win_game(t_solong *game)
 {
 	char	*str;
-	
+
 	if (game->score == game->c)
 	{
 		game->steps++;
@@ -66,8 +66,8 @@ int	main(int argc, char **argv)
 	game.mlx = mlx_init();
 	game.mlx_window = mlx_new_window(game.mlx, (game.map_width * BLOCK), \
 										(game.map_height * BLOCK), "so_long");
-	//game.steps = 0;
-	//count(&game);
+	game.steps = 0;
+	count(&game);
 	get_xpm_to_image(&game);
 	create_map(&game);
 	mlx_key_hook(game.mlx_window, &get_moves, &game);
