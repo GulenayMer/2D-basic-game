@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:15:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/19 22:37:25 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/20 11:50:19 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,12 +87,13 @@ int	create_map(t_solong *game);
 int		get_moves(int key, t_solong *game);
 void	move_up_w(t_solong *game);
 void	move_right_d(t_solong *game);
-void	move_left_s(t_solong *game);
-void	move_down_a(t_solong *game);
+void	move_left_a(t_solong *game);
+void	move_down_s(t_solong *game);
 
 /* */
 void	win_game(t_solong *game);
 int		count(t_solong *game);
 int		exit_game(t_solong *game);
+int		create_loop(t_solong *game);
 
 #endif

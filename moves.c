@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:45:31 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/19 21:11:56 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/20 12:27:27 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@ void	move_up_w(t_solong *game)
 	{
 		if (game->map[j - 1][i] == 'C')
 			game->score++;
-		if (game->map[j - 1][i] == 'E')
-			win_game(game);
-	}
-	else
-	{
 		game->map[j][i] = '0';
 		game->map[j - 1][i] = 'P';
 		game->y_pos--;
 		game->steps++;
+		create_loop(game);
+		if (game->map[j - 1][i] == 'E')
+			win_game(game);
 	}
 }
 
-void	move_down_a(t_solong *game)
+void	move_down_s(t_solong *game)
 {
 	int	i;
 	int	j;
@@ -47,19 +45,17 @@ void	move_down_a(t_solong *game)
 	{
 		if (game->map[j + 1][i] == 'C')
 			game->score++;
+		game->map[j + 1][i] = 'P';
+		game->map[j][i] = '0';
+		game->y_pos++;
+		game->steps++;
+		create_loop(game);
 		if (game->map[j + 1][i] == 'E')
 			win_game(game);
 	}
-	else
-	{
-		game->map[j][i] = '0';
-		game->map[j + 1][i] = 'P';
-		game->y_pos++;
-		game->steps++;
-	}
 }
 
-void	move_left_s(t_solong *game)
+void	move_left_a(t_solong *game)
 {	
 	int	i;
 	int	j;
@@ -70,15 +66,13 @@ void	move_left_s(t_solong *game)
 	{
 		if (game->map[j][i - 1] == 'C')
 			game->score++;
-		if (game->map[j][i - 1] == 'E')
-			win_game(game);
-	}
-	else
-	{
 		game->map[j][i] = '0';
 		game->map[j][i - 1] = 'P';
 		game->x_pos--;
 		game->steps++;
+		create_loop(game);
+		if (game->map[j][i - 1] == 'E')
+			win_game(game);
 	}
 }
 
@@ -93,15 +87,13 @@ void	move_right_d(t_solong *game)
 	{
 		if (game->map[j][i + 1] == 'C')
 			game->score++;
-		if (game->map[j][i + 1] == 'E')
-			win_game(game);
-	}
-	else
-	{
 		game->map[j][i] = '0';
 		game->map[j][i + 1] = 'P';
 		game->x_pos++;
 		game->steps++;
+		create_loop(game);
+		if (game->map[j][i + 1] == 'E')
+			win_game(game);
 	}
 }
 
@@ -109,13 +101,13 @@ int	get_moves(int key, t_solong *game)
 {
 	printf("in get_moves\n");
 	if (key == DOWN)
-		move_down_a(game);
+		move_down_s(game);
 	else if (key == UP)
 		move_up_w(game);
 	else if (key == RIGHT)
 		move_right_d(game);
 	else if (key == LEFT)
-		move_left_s(game);
+		move_left_a(game);
 	else if (key == ESC)
 		exit_game(game);
 	return (0);
