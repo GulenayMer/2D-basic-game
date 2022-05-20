@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:08:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/20 17:45:19 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/20 19:10:05 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,14 @@ int	count(t_solong *game)
 	return (0);
 }
 
-/*void	win_game(t_solong *game)
+void	win_game(t_solong *game)
 {
 	if (game->score == game->c)
-	{}
-		//printf("score: %d", game->score);
-		//printf("c: %d", game->c);
+	{
 		ft_putstr_fd("Game over\n", 1);
 		exit(0);
-}*/
+	}
+}
 
 int	exit_game(t_solong *game)
 {	
@@ -56,7 +55,6 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (1);
-	//ft_memset(&game, 0, sizeof(t_solong));
 	ft_read_map(argv, &game);
 	error_check(&game);
 	game.mlx = mlx_init();
