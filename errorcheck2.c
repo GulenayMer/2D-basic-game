@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:34:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/19 16:08:54 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/20 13:09:27 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@ int	check_p_c_e(t_solong *game)
 		}
 		j++;
 	}
+	return (0);
+}
+
+int	check_chars(t_solong *game)
+{
+	check_p_c_e(game);
 	if (game->p == 0 || game->c == 0 || game->e == 0)
 		return (1);
 	return (0);
@@ -65,16 +71,6 @@ int	check_p_c_e_1_0(t_solong *game)
 	return (0);
 }
 
-int	strlen_helper(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0' && s[i] != '\n')
-		i++;
-	return (i);
-}
-
 /* check if the all lines has the same length */
 int	check_line_length(t_solong *game, char **argv)
 {
@@ -83,18 +79,12 @@ int	check_line_length(t_solong *game, char **argv)
 	int	j;
 
 	length = ft_strlen(argv[0]);
-	//printf("%d\n", length);
-	//length_next = strlen_helper(*(game->map));
-	//printf("%d\n", length);
 	j = 1;
 	while (j < game->map_height)
 	{
 		length_next = ft_strlen(argv[j]);
 		if (length != length_next)
-		{
-			printf("lines are not equal\n");
 			return (1);
-		}
 		j++;
 	}
 	return (0);
@@ -115,9 +105,6 @@ int	check_rectangular(t_solong *game)
 	j--;
 	i--;
 	if (j == i)
-	{
-		printf("not a retangular\n");
 		return (1);
-	}
 	return (0);
 }

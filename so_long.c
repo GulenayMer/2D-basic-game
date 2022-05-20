@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:08:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/20 12:48:24 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/20 17:45:19 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	error_check(t_solong *game)
 {
 	if (check_first_line(game) || check_last_line(game) \
 	|| check_first_index(game) || check_last_index(game) \
-	|| check_p_c_e(game) || check_p_c_e_1_0(game))
+	|| check_chars(game) || check_p_c_e_1_0(game))
 	{
 		write(1, "Error with the map\n", 20);
 		return (1);
@@ -34,19 +34,15 @@ int	count(t_solong *game)
 	return (0);
 }
 
-void	win_game(t_solong *game)
+/*void	win_game(t_solong *game)
 {
-	char	*str;
-
 	if (game->score == game->c)
-	{
-		game->steps++;
-		str = ft_itoa(game->steps);
-		write(1, "You won", 8);
-		ft_putstr_fd(str, 1);
+	{}
+		//printf("score: %d", game->score);
+		//printf("c: %d", game->c);
+		ft_putstr_fd("Game over\n", 1);
 		exit(0);
-	}
-}
+}*/
 
 int	exit_game(t_solong *game)
 {	
@@ -60,18 +56,18 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 		return (1);
-	ft_memset(&game, 0, sizeof(t_solong));
+	//ft_memset(&game, 0, sizeof(t_solong));
 	ft_read_map(argv, &game);
 	error_check(&game);
 	game.mlx = mlx_init();
 	game.mlx_window = mlx_new_window(game.mlx, (game.map_width * BLOCK), \
 										(game.map_height * BLOCK), "so_long");
-	game.steps = 0;
 	count(&game);
+	game.steps = 0;
 	get_xpm_to_image(&game);
 	create_map(&game);
-	mlx_key_hook(game.mlx_window, &get_moves, &game);
-	mlx_hook(game.mlx_window, 17, (1 << 17), &exit_game, &game);
+	mlx_key_hook(game.mlx_window, get_moves, &game);
+	mlx_hook(game.mlx_window, 17, (1 << 17), exit_game, &game);
 	mlx_loop(game.mlx);
 	return (0);
 }
