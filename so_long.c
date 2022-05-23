@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:08:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/20 19:10:05 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/23 21:47:28 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,15 @@ int	count(t_solong *game)
 
 void	win_game(t_solong *game)
 {
+	char	*stp;
+
+	stp = ft_itoa(game->steps);
 	if (game->score == game->c)
 	{
-		ft_putstr_fd("Game over\n", 1);
+		game->steps++;
+		ft_putstr_fd("Game over. Steps taken: \n", 1);
+		ft_putstr_fd(stp, 1);
+		ft_putstr_fd("\n", 1);
 		exit(0);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:15:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/20 17:10:04 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/23 23:21:50 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <stdlib.h>
 
 # define BLOCK 64
-# define WALL "./data/wall.xpm"
+# define WALL "./data/wall4.xpm"
 # define FLOOR "./data/grass.xpm"
-# define PLAYER "./data/playerbg.xpm"
-# define COLLECT "./data/seed.xpm"
-# define EXIT "./data/treenight.xpm"
+# define PLAYER "./data/farmer.xpm"
+# define COLLECT "./data/playerbg.xpm"
+# define EXIT "./data/pink.xpm"
 # define UP 13
 # define DOWN 1
 # define RIGHT 2

@@ -6,12 +6,11 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:13:32 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/18 15:26:07 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/23 21:55:38 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
 
 int	count_number_lines(char **argv)
 {
@@ -31,7 +30,7 @@ int	count_number_lines(char **argv)
 	return (line_count);
 }
 
-int count_line_length(char **argv)
+int	count_line_length(char **argv)
 {
 	char	*line;
 	int		mapfd;
@@ -61,14 +60,6 @@ void	ft_read_map(char **argv, t_solong *game)
 		line = get_next_line(mapfd);
 		line_count++;
 	}
-	/*int i = 0;
-	while (i < line_count && game->map[i])
-	{
-		printf("%s", game->map[i]);
-		i++;
-	}
-	printf("\n");*/
 	game->map_width = count_line_length(argv) - 1;
 	game->map_height = line_count;
-	//close(mapfd);
 }

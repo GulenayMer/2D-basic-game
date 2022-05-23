@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:17:41 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/20 12:07:26 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/23 23:17:01 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,9 @@ int	create_loop(t_solong *game)
 
 	create_map(game);
 	steps = ft_itoa(game->steps);
-	mlx_string_put(game->mlx, game->mlx_window, 30, 30, 0x0, steps);
+	mlx_string_put(game->mlx, game->mlx_window, 50, 50, 0x00FF0000, steps);
+	ft_putstr_fd(steps, 1);
+	ft_putstr_fd("\n", 1);
 	free(steps);
 	return (0);
 }
