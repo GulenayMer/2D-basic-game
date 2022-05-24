@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:13:32 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/23 21:55:38 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/24 16:18:20 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ void	ft_read_map(char **argv, t_solong *game)
 	int		line_count;
 
 	mapfd = open(argv[1], O_RDONLY);
+	if (mapfd < 0)
+	{
+		write(1, "There is no such a file\n", 25);
+		close(mapfd);
+	}
 	line_count = count_number_lines(argv);
 	game->map = (char **)malloc(sizeof(t_solong *) * line_count - 1);
 	line_count = 0;

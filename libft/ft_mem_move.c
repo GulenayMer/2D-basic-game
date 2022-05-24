@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/20 18:23:44 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/11 17:03:17 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/24 15:46:05 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*ft_mem_move(char *dest, char *src, size_t len)
 {
- 	char		*p_dst;
-	char		*p_src;
-	size_t				i;
+	char	*p_dst;
+	char	*p_src;
+	size_t	i;
 
 	p_dst = dest;
 	p_src = src;

@@ -10,6 +10,7 @@ SRCS 	=	so_long.c \
 			map_img.c \
 			errorcheck.c \
 			errorcheck2.c \
+			errorcheck3.c \
 			moves.c \
 
 LIBFT		= libft/libft.a
@@ -20,7 +21,7 @@ RM          =	rm -f
 
 $(NAME): $(SRC_OBJS)
 	make -C libft/
-	$(CC) $(CFLAGS)  mlx/libmlx.a  -framework OpenGL -framework AppKit -fsanitize=address -o $(NAME) $(SRC_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS)  mlx/libmlx.a  -framework OpenGL -framework AppKit -o $(NAME) $(SRC_OBJS) $(LIBFT)
 
 all : $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:15:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/23 23:21:50 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/24 23:25:19 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define FLOOR "./data/grass.xpm"
 # define PLAYER "./data/farmer.xpm"
 # define COLLECT "./data/playerbg.xpm"
-# define EXIT "./data/pink.xpm"
+# define EXIT "./data/exit3.xpm"
 # define UP 13
 # define DOWN 1
 # define RIGHT 2
@@ -62,17 +62,20 @@ typedef struct s_solong
 }			t_solong;
 
 /*  Error Checks */
-int		check_ber(char *argv);
+int		check_ber(char **argv);
 int		check_first_line(t_solong *game);
 int		check_last_line(t_solong *game);
 int		check_first_index(t_solong *game);
 int		check_last_index(t_solong *game);
 int		check_p_c_e(t_solong *game);
 int		check_p_c_e_1_0(t_solong *game);
-int		error_check(t_solong *game);
 int		check_rectangular(t_solong *game);
-int		check_line_length(t_solong *game, char **argv);
+int		check_line_length(t_solong *game);
 int		check_chars(t_solong *game);
+void	error_check(t_solong *game, char **argv);
+int		error_message(int error);
+void	check_errors(t_solong *game);
+int		ft_str_len(char *str);
 
 /* map */
 void	ft_read_map(char **argv, t_solong *game);

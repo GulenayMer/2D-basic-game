@@ -6,25 +6,26 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:31:57 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/18 15:25:08 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/24 17:20:32 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /* check if the map has ber extension */
-int	check_ber(char *argv)
+int	check_ber(char **argv)
 {
 	int	argv_first_length;
 	int	index;
 
-	argv_first_length = ft_strlen(argv);
+	argv_first_length = ft_strlen(argv[1]);
 	index = argv_first_length - 1;
-	if (argv[index] == 'r' && argv[index - 1] == 'e' && argv[index - 2] == 'b'
-		&& argv[index - 3] == '.')
+	if (argv[1][index] == 'r' && argv[1][index - 1] == 'e' \
+		&& argv[1][index - 2] == 'b'
+		&& argv[1][index - 3] == '.')
 		return (0);
 	else
-		return (1);
+		return (error_message(1));
 }
 
 /* check if the first line is filled with 1s */
@@ -38,7 +39,7 @@ int	check_first_line(t_solong *game)
 	while (i < game->map_width)
 	{
 		if (game->map[j][i] != '1')
-			return (1);
+			return (error_message(3));
 		i++;
 	}
 	return (0);
@@ -55,7 +56,7 @@ int	check_last_line(t_solong *game)
 	while (i < game->map_width)
 	{
 		if (game->map[j][i] != '1')
-			return (1);
+			return (error_message(3));
 		i++;
 	}
 	return (0);
@@ -72,7 +73,7 @@ int	check_first_index(t_solong *game)
 	while (j < game->map_height)
 	{
 		if (game->map[j][i] != '1')
-			return (1);
+			return (error_message(3));
 		j++;
 	}
 	return (0);
@@ -89,7 +90,7 @@ int	check_last_index(t_solong *game)
 	while (j < game->map_height)
 	{
 		if (game->map[j][i] != '1')
-			return (1);
+			return (error_message(3));
 		j++;
 	}
 	return (0);
