@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:31:57 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/24 17:20:32 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/25 13:48:27 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,11 @@ int	check_ber(char **argv)
 int	check_first_line(t_solong *game)
 {
 	int	i;
-	int	j;
 
-	j = 0;
 	i = 0;
 	while (i < game->map_width)
 	{
-		if (game->map[j][i] != '1')
+		if (game->map[0][i] != '1')
 			return (error_message(3));
 		i++;
 	}
@@ -65,14 +63,12 @@ int	check_last_line(t_solong *game)
 /* check if the first indexes of the lines are filled with 1s */
 int	check_first_index(t_solong *game)
 {
-	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (j < game->map_height)
 	{
-		if (game->map[j][i] != '1')
+		if (game->map[j][0] != '1')
 			return (error_message(3));
 		j++;
 	}

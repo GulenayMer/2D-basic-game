@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/18 18:45:31 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/20 19:06:14 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/25 13:13:50 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	move_down_s(t_solong *game)
 }
 
 void	move_left_a(t_solong *game)
-{	
+{
 	int	i;
 	int	j;
 

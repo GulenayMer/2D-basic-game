@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 13:15:40 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/24 23:25:19 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/25 12:29:20 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	error_check(t_solong *game, char **argv);
 int		error_message(int error);
 void	check_errors(t_solong *game);
 int		ft_str_len(char *str);
+void	ft_free(t_solong *game);
 
 /* map */
 void	ft_read_map(char **argv, t_solong *game);

@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 17:13:32 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/24 16:18:20 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/25 13:45:31 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,9 @@ int	count_number_lines(char **argv)
 	mapfd = open(argv[1], O_RDONLY);
 	line = get_next_line(mapfd);
 	line_count = 0;
-	while (line)
+	while (line != NULL)
 	{
+		free(line);
 		line = get_next_line(mapfd);
 		line_count++;
 	}
@@ -39,6 +40,7 @@ int	count_line_length(char **argv)
 	mapfd = open(argv[1], O_RDONLY);
 	line = get_next_line(mapfd);
 	line_length = ft_strlen(line);
+	free(line);
 	close(mapfd);
 	return (line_length);
 }
@@ -57,9 +59,11 @@ void	ft_read_map(char **argv, t_solong *game)
 	}
 	line_count = count_number_lines(argv);
 	game->map = (char **)malloc(sizeof(t_solong *) * line_count - 1);
+	if (!game->map)
+		ft_free(game);
 	line_count = 0;
 	line = get_next_line(mapfd);
-	while (line)
+	while (line != NULL)
 	{
 		game->map[line_count] = line;
 		line = get_next_line(mapfd);

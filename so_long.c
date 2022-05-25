@@ -6,7 +6,7 @@
 /*   By: mgulenay <mgulenay@student.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/16 18:08:56 by mgulenay          #+#    #+#             */
-/*   Updated: 2022/05/24 22:30:01 by mgulenay         ###   ########.fr       */
+/*   Updated: 2022/05/25 13:42:29 by mgulenay         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,29 @@ void	win_game(t_solong *game)
 		ft_putstr_fd("Game over. Steps taken: \n", 1);
 		ft_putstr_fd(stp, 1);
 		ft_putstr_fd("\n", 1);
+		ft_free(game);
+		free(stp);
 		exit(0);
+	}
+}
+
+void	ft_free(t_solong *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->map_height)
+	{
+		free(game->map[i]);
+		i++;
 	}
 }
 
 int	exit_game(t_solong *game)
 {	
 	mlx_destroy_window(game->mlx, game->mlx_window);
+	ft_free(game);
+	free(game->map);
 	exit(0);
 }
 
